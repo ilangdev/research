@@ -1,0 +1,257 @@
+\input{preamble.tex}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	The main aim of this paper is to study cubical $\Sigma$-modules and their homotopy properties.
+\end{abstract}
+
+\tableofcontents
+
+\newpage
+\section{$\Sigma$-modules.}
+\label{sec:orgb22ab46}
+
+	\subsection{Basic categorical definitions.}
+    For convenience, we recall some category theory definitions.
+		\subsubsection{Monoidal categories.}
+		A symmetric monoidal category is category equiepd a bifunctor $\otimes : \mathcal{C} \times \mathcal{C} \shortrightarrow \mathcal{C}$ called monoid (tensor) product and unit object $\oid$ $\in$ $\mc{C}$
+		with some natural transforamtions $ X \otimes Y  \cong Y \otimes X $, 
+		$ X \otimes (Y \otimes Z) \cong (X \otimes Y) \otimes Z $, 
+		$ \oid \otimes X \cong X \cong \oid \otimes X $.
+		These transformations must statisfy an additional coherence conditions [ML98].
+		\subsubsection{Category with external $\otimes$-action.}
+		Let $\otimes$-category $\mathcal{C}$ is fixed. We can define an external (left) $\otimes$-action 
+		($\rosl$) on some category $\mathcal{D}$. This means that we have a bifunctor 
+		$ \rosl : \mathcal{A} \times \mathcal{B} \to \mathcal{D} $ togehther some family of functorial
+		isomorphisms $ (X \rosl Y) \otimes Z \cong X \rosl (Y \rosl Z) $ statisfied a coherence conditions.
+		A right $\osl$-action is defined similarly.
+		\subsubsection{Morphisms of $\otimes$-categories.}
+		There is a notion of $\otimes$-functor $ F : \mc{C} \rarr \mc{C'} $ between two $\otimes$-categories.
+		By defenition, this is functor $F$ with natural ispomorphisms $ F(X \otimes_\mc{C} Y)  \cong F(X) \otimes_\mc{C'} F(Y) $, 
+		$ F(\oid_{\mc{C}}) = \oid_\mc{C'} $ compatible with and associtivity and units. \newline
+		For two categories $ \mc{D} $, $ \mc{D'} $ with external $ \rosl $-actions $ \mc{C} $, $ \mc{C'} $, respectivly, there is
+		a notion of $\rosl$-functors $ G: \mc{D} \rarr \mc{D'} $ compatible with $F$ that is 
+		$ G(X \rosl_\mc{D} Y) \cong F(X) \rosl_\mc{D'} G(Y) $ also cmopatible with associativity and units on
+		$\mc{D}$ and $\mc{D'}$.
+		\subsubsection{Algebras.} An algebra (or a monoid) in $\otimes$-category $\mc{C}$ is a triple $ A = (A, \mu, \epsilon) $
+		subject to ususal axiom $ \mu \circ (\oid_{\mc{C}} \otimes \mu) = \mu \circ (\mu \otimes \oid_{\mc{C}}) : 
+		\mc{C} \times \mc{C} \times  \mc{C} \rarr \mc{C} $ and $ \mu \circ (\oid_{\mc{C}} \otimes \epsilon) = \oid_{C} =
+		\mu \circ (\epsilon \otimes \oid_{\mc{C}}) $. Them is said multiplication and unit, respectivly. An algebra homorphism
+		$ f : (A, \mu_{A}, \epsilon_{A}) \rarr (B, \mu_{B}, \epsilon_{B}) $ is a morphism $ f : A \rarr B $ such that
+		$ \mu_{B} \circ (f \otimes f) = f \circ \mu_{A} $. Therefore we can define a category algebras in $\mc{C}$,
+		denoted by $ Alg(\mc{C}) $.
+		\subsubsection{Modules.} Let given an external (left) $\otimes$-action $\mc{C}$ on $\mc{D}$ and algebra 
+		$ A = (A, \mu, \epsilon) $ in $\mc{C}$. Then (left) $A$-module in $D$ is by definition a pair $ M = (M, \alpha) $ such that
+		$ M \in Ob(D)$, $\alpha : A \rosl M \rarr M $ and there is a conditions 
+		$ \alpha \circ (\mu \rosl \oid_M) = \alpha \circ (\oid_\mc{C} \rosl \alpha)$, 
+		$ \alpha \circ (\epsilon \rosl \oid_{M}) = \oid_{M} $. A morphism $ f : (M, \alpha_{M}) \rarr (N, \alpha_{N}) $
+		between two $A$-modules is morphism $ f : M \rarr N $ in $D$ sompatible with $A$-actions, i. e.
+		$ f \circ \alpha_{M} = \alpha_{N} \circ (\oid_{A} \rosl f)  $ . Therefore, $A$-modules in $\mc{D}$ define a category,
+		denoted by $ \mc{D}^A $.
+		\subsubsection{Monads.} Let's consider a category $Endof(\mc{C})$ of endofunctors of category $\mc{C}$.
+		There is a natural monoidal strauture on this category $ F \otimes G = F \circ G $, i.e. composition of functors.
+		A monad $\Sigma$ is algebra on this category. A morphism two monads $ \phi : \Sigma \rarr \Sigma' $ is a morphism
+		corresponding algebras. A monads over $\mc{C}$ define a category, denoted by $ Monads(\mc{C}) $. Therefore
+		$ Monads(\mc{C}) = Alg(Endof(\mc{C})) $.
+		
+	\subsection{Algebraic monads and generlized rings.}
+	%Let's fix a base category $ \mc{C} $ that will be equal to $ Sets $. All of the endfunctors and monads will be conisder 
+	%over this category.
+		\subsubsection{Algebraic endofunctors and monads.} An endofucntor $ \Sigma : Sets \rarr Sets $ is
+	    \textit{algebraic} if it commutes with fltered inductive limits. An algebraic endofuntors is full $ \otimes $-subcategory of
+	    category $ \mc{A} = Endof(Sets) $, dnoted by $ Endof_{alg}(Sets) $ or $ \mc{A}_{alg} $. An \textit{algebraic monad} is an
+	    algebra (or a monoid) in this category. Let's denote category standart finite sets $ \textbf{n} = \{1,2,...n\} $ as 
+	    $\underline{\mathds{N}}$. This is a full subcateofry of $Sets$. Because any set is filtered inductive limits of all its finite subsets and any finite 
+	    sunbset isomorphic to some standart set, we have an equivalence between $\mc{A}_{alg}$ and 
+	    $ Funct(\underline{\mathds{N}}, Sets) = Sets^{\underline{\mathds{N}}} $. We define an \textit{algebraic moand} as monad in category $ \mc{A}_{alg} $.
+	    \subsubsection{Algebraic operations.} For given algebraic monad $\Sigma$ and set $X$ a morphism $ \mu : \Sigma(X) \rarr X$
+	    is equivalent to a family of maps $ \{ \mu^{(n)} : \Sigma(n) \times X^{n} \rarr Y \}_{n \geqslant 0} $ subject to conditions $ \alpha^{(m)} \circ (id_{\Sigma(m)} \times X^{\phi}) = \alpha^{(n)} \circ (\Sigma(\phi) \times id_{X^n{}}) : \Sigma(m) \times
+	    X^{n} \rarr Y $ for all $ \phi : \textbf{m} \rarr \textbf{n} $, where $ X^{\phi} = Hom(\phi,id_{X}) : Hom(n,X) = X^{n}
+	    \rarr Hom(m,X) = X^{m} $ is the canonical map $ (x_{1},...,x_{n}) \mapsto (x_{\phi(1)},...,x_{\phi(n)}) $ [Dur 4.1.4] (1.2.2.1).
+        According to 1.2.1 a description of algbraic monad can be obtain as sequence of sets $ \{\Sigma(n)\}_{n \geqslant 0} $
+        and maps $ \Sigma(\phi) : \Sigma(\textbf{n}) \rarr \Sigma(\textbf{m}) $, $ \phi : \textbf{m} \rarr \textbf{n} $. Now we can combine this discription and (1.2.2.1). Hence we obtain a colletion of multiplicaiton maps $ \mu_{n}^{k} : \Sigma(k) \times
+        \Sigma(n)^{k} \rarr \Sigma(n) $ subject to (1.2.2.1). There is a convinient nonations for this namely 
+        $ t(x_{1},...,x_{k}) \equiv \mu_{n}^{(k)}(t; x_{1},...,x_{k}) $, where $t$ is siad an operation the arity of $k$. 
+        We also obtain an \textit{identity} \textbf{e} equal
+        $ \epsilon_{1}(1) \in \Sigma(1) $ by Yoneda lemma.
+        \subsubsection{Generalized rings.} There is a notion of \textit{commutativity} for algebraic monad
+        ([Dur 5.1.1] for more details). The \textit{generalized ring} is commutative monad. The category of generalized rings is
+        full subcategory of $ Monads_{alg}(Sets) $. We denote this category by $ GenR $.
+	
+	%\subsection{Modules over an algebraic monads.}
+	
+
+\section{The homotopy framework.}
+The main goal of homotopy theory is to study of objects of certain category up to "weak equvalence", i.e. the \textit{localization} process. The modern approch is to consider of the homotopy categories and the derived functors.
+	\subsection{Homotopy categories.}
+	A \textit{homotopical category} is category $\mc{M}$ with a class $\mc{W}$ of morphism called \textit{weak equivalence} that contains all the identities and subject to \textit{2-of-6 property} such that if $ hg $ and $ gf $ are in $\mc{W}$ so are 
+	$ f, g, h, hgf $.
+	\newline
+	\newline
+	2-of-6 property is stronger then common 2-of-3 property in definition of the model category. Nonetheless, the weak
+	equivalences of any model category statisfy the 2-of-6 property. The \textit{minimal category} is the simple example of the homotopical category in which weak equivalence is taken to be isomorphisms. We can consider for any homotopical category $\mc{M}$
+	a \textit{homotopy category} Ho$ (\mc{M}) $, obtained by formal inverting the weak equivalences. Thus we get a localization
+	functor $ \gamma : \mc{M} \rarr $ Ho$ (\mc{M}) $ which is universal among functors that invert the weak equivalences. In genral,
+	there is some theoretical issues because Ho$(\mc{M})$ need not have samll hom-sets. Hence there is methods that are avalible 
+	to enusre local smallness. For example, a categories admitting a Quillen model structure.
+	
+	\subsection{Derived functors.} 
+		\subsubsection{Homopical functors.}
+		Let $\mc{M}$, $\mc{N}$ be a homotopical actegories, and Ho$(\mc{M})$, Ho$(\mc{N})$ be their homotopy categories, with localization functors $\gamma : \mc{M} \rarr$ Ho$(\mc{M})$, $\delta : \mc{N} \rarr$ Ho$(\mc{N})$. The functor is said \textit{homotopical} if it preserves weak equivalences. If $F$ is homotopical, then by universal property $\delta F $ 
+		induces a unique functor $ \tilde{F} $ commuting with localizations. %making the following diagrm commute.
+%		\begin{center} 
+%			\begin{tikzcd}
+%				A \arrow[r, "\phi"] \arrow[d]
+%				& B \arrow[d, "\psi"] \\
+%					C \arrow[r, "\eta" ]
+%				& D
+%			\end{tikzcd}
+%		\end{center}
+		\subsubsection{Derived functors.}
+		In general, for non-homotopical functor, there is a notion of \textit{derived functor} that is the closest homotopical aproximation. We are going to define a several notioins related with derived functor (all taken from [Shu]). 
+		\newline
+		\newline
+		1) A \textit{total left ferived funtor} of $F : \mc{M} \rarr \mc{N} $ as  left Kan extension of $\delta F$ along $\gamma$ 
+		and denoted \textbf{L}$F$. 
+		\newline
+		2) A \textit{left derived functor} of $F$ is a functor $\textbf{L} F$ : $\mc{M} \rarr $ Ho($\mc{N}$)
+		equipped with comprassion map $\textbf{L} F$ $\rarr$ $\delta F$ such that $\textbf{L} F$ is homotopical and terminal among
+		homotopical functors equiped with maps $\delta F$.
+		\newline
+		3) A \textit{point-set-left} derived functor is a functor $ \mathds{L} F : \mc{M} \rarr \mc{N} $ equipped with comprasion
+		map $ \mathds{L} F \rarr F $ such that the induced map $ \delta \mathds{L} F \rarr \delta F $ makes $ \delta \mathds{L} F $
+		into a left derived functor of $F$. 
+%		\begin{center} 
+%			\begin{tikzcd}
+%				A \arrow[r, "\phi"] \arrow[d]
+%				& B \arrow[d, "\psi"] \\
+%					C \arrow[r, "\eta" ]
+%				& D
+%			\end{tikzcd}
+%		\end{center}
+       \subsubsection{Deformations.}
+       In this section we describe derived functors via deformations.
+       \newline
+       \newline
+       A \textit{left defromations} is functor $ Q : \mc{M} \rarr \mc{M} $ togther with natural weak equivalence 
+       $ q : Q \tilde{\rarr} \oid_{\mc{M}} $. It is easy to see that Q is homotopical by 2-of-3 property. $\mc{M}_{Q}$ is
+       called a \textit{left deforamtion retract} [Shu] or category of \textit{cofibrant objects} [Ri].
+       By universal property, there are functors Ho($\mc{M}$) $\rarr$ Ho($\mc{M}_{Q}$) and Ho($\mc{M}_{Q}$) $\rarr$ Ho($\mc{M}$).
+       Hence there is an equivalence of categories Ho($\mc{M}_{Q}$) $\cong$ Ho($\mc{M}$).
+       \newline
+       \newline
+       (2.2.3.1) \textbf{Lemma}([Ri 2.2.8]). If $ F : \mc{M} \rarr \mc{N} $ has a left deformarion $ q : Q \tilde{\rarr} \oid $, then
+       $ F Q $ is a left derived functor of $F$.
+       \subsubsection{Example.} The most important example for us is the calssical derived functor between abelina categories from
+       homological algebra.
+       \newline
+       \newline
+       Let $\mc{A}$ be any abelian category with sufficiently many projective objects e.g. $ \mc{A} = Mod_{R}$ category of left $R$-modules for classical ring $R$. Le $ Ch_{\geqslant 0}(R) $ be a category bounded below chain complexes and quasi-isomorphisms is taken as weak equivalences. For any $R$-module $X$ there exists a projective module $P$ and 
+       surjection $ P \twoheadrightarrow X $. We can define a \textit{projective resolution}, a chain complex $J_{\bullet} \in Ch_{\geqslant 0}$ equipped with a quasi-isomorphism $p : J_{\bullet} \tilde{\rarr} X$. The operation of taken of a projective reoslutions $ Q : Ch_{\geqslant 0}(R) \rarr Ch_{\geqslant 0}(R) $ defines a left derformaion $ q : Q \tilde{\rarr} \oid $. Any additive functors $ F : Mod_{R} \rarr Mod_{S} $ induces a functor
+       $ F_{\bullet} : Ch_{\geqslant 0}(R) \rarr Ch_{\geqslant 0}(S) $ that preserves chain homotopy equivalences. Because
+       any quasi-isomorphism between non-negatively chain complexes of projetive objects is a chian homotopy equivalence, $ F $ has a
+       left derived functor
+       $ Mod_{R} \xrarr[]{deg0} Ch_{\geqslant 0}(R) \xrarr[]{\mathds{L} F} Ch_{\geqslant 0}(S) \xrarr[]{H_{0}} Mod_{S} $.     	
+	
+	\subsection{Model categories.}
+	 A model categories is commonly used homotopy framework. The aspects of theory of model atefories widely represented in
+     many litratures e.g. [Hir], [Hov]. We make a brief description.
+	 \subsubsection{Model Structure.}
+	 A \textit{model structure} on a category $\mc{C}$ is three distinguished classes of morphisms of $\mc{C}$ 
+	 called weak equivalences, cofibrations and fibrations subject to the following properties 1)..4).
+	 \newline
+	 \newline
+	 Let's introduce some definitoins before. A map $ f : A \rarr B $ is said a \textit{retract} of $ g : C \rarr D$ in categoty $\mc{C}$ if $f$ is retract of $g$ in category of maps Map$(\mc{C})$ of $\mc{C}$, i.e. if following diagram is commutative.
+	 
+	 		\begin{center} 
+	 			\begin{tikzcd}
+	 				A \arrow[d, "f"] \arrow[r] & C \arrow[d, "g"] \arrow[r] & A \arrow[d, "f"] \\
+	 				B \arrow[r] & D \arrow[r] & B
+	 			\end{tikzcd}
+	 		\end{center}
+ 	 
+ 	 Let $i : A \rarr B$ and $ g : X \rarr Y $ be a morphisms in $\mc{C}$. Then $i$ is said has a left lifting property respect (LLP) to $g$, or $g$ has right lifitn propety (RLP) respect to $i$, if $ u : A \rarr X $ and $ v : B \rarr Y $, such that $ v i = f u $,
+ 	 there exists $ h : B \rarr X $, such that $ h i = u $ and $ g h = v $, i.e. followong diagram is comutative:
+ 	 
+ 	 		\begin{center} 
+ 	 			\begin{tikzcd}
+ 	 				A \arrow[r, "u"] \arrow[d, "i"] & X \arrow[d, "g"] \\
+ 	 				B \arrow[r, "v"] \arrow[ur, dashrightarrow, "h"] & Y
+ 	 			\end{tikzcd}
+ 	 		\end{center}
+  			
+  	 A map is said a \textit{trivial (co)fibration} if it is both (co)fibration and trivial equivalence.
+  	 \newline
+  	 \newline	
+	 1)(2-of-3) If $ f, g \in$ Mor($\mc{C}$) and $gf \in$ Mor($\mc{C}$) and two of $f, g, gf$ are weak equivalences, then is the third.
+	 \newline
+	 \newline
+	 2)(Retracts) Closeness with respect to retracts for each of three classes.
+	 \newline
+	 \newline
+	 3)(Lifiting) Any cofibrations have the LLP with respect to all trivial fibrations, and any fibrations have the RLP with respect to all trivial cofibration.
+	 \newline
+	 \newline
+	 4)(Factorization) For any morphism there exists both of factorizations into trivial cofibration followed by fibration, or
+	 into a cofibration followed by trivial fibration.
+	 \newline
+	 \newline
+	 A \textit{model category} $\mc{C}$ is a complete and cocompete category equiped with a model structure.
+	 
+	 \subsubsection{Homtopies.}
+	 Let $\mc{C}$ be a model category. Then $\Ho(\mc{C})$ is corresponding homotopy category and
+	 $ \gamma : \mc{C} \rarr \Ho(\mc{C}) $ is a localization functor. We are going to define a homotopy equivalence relation on $\Hom_{\Ho(\mc{C})}(\gamma X, \gamma Y) = [X, Y]$.
+	 \newline
+	 \newline
+	 Let's fix maps $f,g : A \rarr B $. A \textit{cylinder object} $ A \times I $ for object $ A $ is a morphism 
+	 $ \nabla_{A} : A \sqcup A \xrarr[]{(i_0, i_1)} A \times I \xrarr[]{\sigma} A $, such that $(i_{1}, i_{2})$ is a cofibration and $\sigma$ is a weak equivalence. A path object $ B^I $ for object $B$ is a morphism 
+	 $ \Delta_{B} : B \xrarr[]{s} B^I \xrarr[]{(j_{0}, j_{1})} B \times B $, such that $s$ is a weak equivalence and
+	 $ (j_{0}, j_{1}) $ is a fibration.
+	 \newline
+	 \newline 
+	 A maps $f$ and $g$ are said \textit{left} (resp. \textit{right}) \textit{homotopic}, written $ f \overset l\sim g $
+	 (resp. $ f \overset r\sim g $)  if there exists \textit{left} (resp. \textit{right homotopy}) from $f$ to $g$, i.e. there exists a map $ H : A' \rarr B $ (resp. $ K : A \rarr B' $) for some cylinder (resp. path) object $A'$ (resp. $B'$) such that $ H i_{0} = f $ and $ H i_{1} = g $ (resp. $ j_{0} K = f $ and $ j_{1} K = g $). A maps are said \textit{homoptopic}, written $ f \sim g $, if they are both left and right homotopic. We write $ \pi_{l} $ (resp. $\pi_{r}$) for the qotient of $\Hom(A,B)$ 
+	 with respect to the equivalence relation generated by $\overset l\sim$(resp. $\overset r\sim$). If $A$ is cofibrant and
+	 $B$ is fibrant, then $\overset l\sim$ and $\overset r\sim$ coinside on $\Hom(A,B)$ and denoted by $\sim$. We write
+	 $\pi(A,B)$ for $\Hom(A,B) / \sim$.
+	 \newline
+	 \newline
+	 Let $\mc{C}_{c}$, $\mc{C}_{f}$ and $\mc{C}_{cf}$ be a full subcotegories of category $\mc{C}$ sonsisiting of all cofibrant,
+	 fibrant and fibrant-cofibrant objects respetvely and $\Ho(\mc{C}_{c})$, $\Ho(\mc{C}_{f})$ and $\Ho(\mc{C}_{cf})$ be corresponding homotopy categories. Denote by $\pi \mc{C}_{c}$ the category with the same object as $\mc{C}$ and morphisms given by
+	 $\Hom_{\pi \mc{C}_{c}}(A, B) = \pi^{r}(A, B)$ and define similary for $\mc{C}_{f}$ and $\mc{C}_{cf}$. Then funcotrs
+	 $ \Ho(\mc{C}_{c}) \rarr \Ho(\mc{C}), \newline \Ho(\mc{C}_{f}) \rarr \Ho(\mc{C}), \pi \mc{C}_{f} \rarr \Ho(\mc{C}) $ 
+	 are equvalences of catefories [Quillen]. 
+	 \newline
+	 \newline
+	 \subsubsection{Higher homotopy groups.} Given model category $\mc{C}$, we define notions of the suspension and the loop.
+	 A \textit{suspension object} $\Sigma A$ of a cofibrant odject is a pushout with respect to the map $ A \sqcup A \rarr 0 $ of the map $ A \sqcup A \rarr A \times I $. Similary, a \textit{loop object} $\Omega B$ is pullback of  $ 0 \rarr B \times B $ by 
+	 $ (j_{0}, j_{1}) : B^{I} \rarr B \times B $. The objects $\Sigma A$ and $\Omega B$, called also cofiber and fiber respectively, are a particular examples of the homotopy limit and the homotopy colimit in modern homotopy theory.
+	 \newline
+	 \newline
+	 Given any two morphisms $ f, g : A \rarr B  $ with cofibrant $A$ and fibrant $B$, we can define a notion of the left homotopy betwee leftn homotopies. This notions is a equivalence relation and define set $ \pi_{1}^{l} (A,B;f,g) $ of homotopy classes of
+	 homotopies $ h : f \sim g $. Simmilary, there exists a dual constraction $ \pi_{1}^{r} (A,B;f,g)$ that turns out to be isomorphic.
+	 Thus we  denote this by $ \pi_{1} (A,B;f,g) $. Let suppose that category $\mc{C}$ has a null object $0_{\mc{C}}$. Then, we put
+	 $ \pi_{1}(A,B) \equiv \pi_{1}^{l} (A,B;0,0) $ where $0$ is a zero map. This is a group. Thus we get a functor
+	 $ A, B \longmapsto [A, B]_{1} $, $ (\Ho (\mc{C}))^{o}  \times  \Ho (\mc{C}) \rarr Grps $, whenever $A$ is a cofibrantand and
+	 $B$ is a fibrant.
+	 \newline
+	 \newline   
+	 \textbf{Theorem}([Quillen]). There are two functors $ \Ho(\mc{C}) \rarr \Ho({\mc{C}}) $, called the \textit{suspension} and the
+	 \textit{loop} functor, such that $ [\Sigma A, B] \cong [A, B]_{1} \cong [A, \Omega B] $.
+	  
+%\section{Cubical Sets}
+%The category of cubical sets is an alternative for the category of simplicial sets being is one of the main tool of homotopy theory.
+%
+%\label{sec:org75a4632}
+%	\subsection{The category of cubical sets.}
+%	\subsection{Monoidal closed structure.}
+%	\subsection{Homotopy propirties of cubical sets.}
+%
+%\section{Homotopical algerbra of cubical sets.}
+%
+%\section{Cubical $\Sigma$-modules.}
+
+\end{document}
